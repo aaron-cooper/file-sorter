@@ -2,6 +2,19 @@
 #include <iostream>
 #include <set>
 
+
+/**
+ * Return set of extensions on files in a directory.
+ * 
+ * This recurrsivly itterates over a directory compiling a set of all the
+ * extensions that appear on the files within the directory. Each extension will
+ * appear only once (hense the set). An extension on a file is simply any
+ * characters that appear after and including the last "." in a file name.
+ * 
+ * @param[in] toSearch the path of the directory whose files' extensions will be
+ *     returned
+ * @return set containing the extensions of files
+ */
 std::set<std::filesystem::path> getAllExtensions(std::filesystem::path toSearch)
 {
 	//using std::set for efficient insertions and because I'll never insert more than

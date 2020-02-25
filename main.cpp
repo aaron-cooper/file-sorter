@@ -22,9 +22,13 @@ std::set<std::string> getAllExtensions(std::filesystem::path toSearch)
 int main()
 {
 
-	for (std::filesystem::directory_entry dir : std::filesystem::recursive_directory_iterator(std::filesystem::current_path()))
+	std::set<std::string> extensions;
+
+	extensions = getAllExtensions(std::filesystem::current_path());
+
+	for (std::string s : extensions)
 	{
-		std::cout << dir.path().string() << std::endl;
+		std::cout << s << std::endl;
 	}
 
 	return 0;

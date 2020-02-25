@@ -6,10 +6,11 @@
 
 int main()
 {
-	std::filesystem::path p;
 
-	p = std::filesystem::current_path();
-	std::cout << p.string() << std::endl;
+	for (std::filesystem::directory_entry dir : std::filesystem::recursive_directory_iterator(std::filesystem::current_path()))
+	{
+		std::cout << dir.path().string() << std::endl;
+	}
 
 	return 0;
 }

@@ -32,6 +32,8 @@ std::set<std::filesystem::path> getAllExtensions(std::filesystem::path toSearch)
 		}
 	}
 
+	extensions.insert("no_extension");
+
 	return extensions;
 }
 

@@ -35,6 +35,31 @@ std::set<std::filesystem::path> getAllExtensions(std::filesystem::path toSearch)
 	return extensions;
 }
 
+
+/**
+ * Function for creating directories.
+ * 
+ * A set paths is passed to the function, for each of those paths a directory is
+ * created.
+ * 
+ * @param parent the parent directory where the paths should be created
+ * @param paths the set of paths for which directories should be created
+ */
+void createSetDirectories(std::filesystem::path parent, std::set<std::filesystem::path> paths)
+{
+	std::filesystem::path toCreate;
+	for (std::filesystem::path p : paths)
+	{
+		toCreate = parent;
+		toCreate /= p;
+		std::filesystem::create_directories(toCreate);
+	}
+
+
+	return;
+}
+
+
 int main()
 {
 

@@ -64,9 +64,6 @@ void createSetDirectories(std::filesystem::path parent, std::set<std::filesystem
 
 void copyFilesToExtensionDirectories(std::filesystem::path toSearch, std::filesystem::path extensionParent)
 {
-	std::filesystem::recursive_directory_iterator iter(toSearch);
-	std::filesystem::recursive_directory_iterator end = std::filesystem::end(iter);
-
 	//for each file in toSearch
 	if (extensionParent.is_relative())
 	{
@@ -75,6 +72,9 @@ void copyFilesToExtensionDirectories(std::filesystem::path toSearch, std::filesy
 		extensionParent = absParent;		
 	}
 
+	//init for loop
+	std::filesystem::recursive_directory_iterator iter(toSearch);
+	std::filesystem::recursive_directory_iterator end = std::filesystem::end(iter);
 	for (; iter != end ;iter++)
 	{
 		std::filesystem::directory_entry file = *iter;

@@ -100,7 +100,7 @@ void copyFilesToExtensionDirectories(std::filesystem::path toSearch, std::filesy
 				destDir = extensionParent;
 				destDir /= "no_extension";
 			}
-
+			destDir /= file.path().filename();
 			try {
 				std::filesystem::copy(file, destDir);
 			} catch (std::filesystem::filesystem_error e) {

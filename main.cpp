@@ -27,7 +27,8 @@ std::set<std::filesystem::path> getAllExtensions(std::filesystem::path toSearch)
 	{
 		if (dir.is_regular_file() && dir.path().has_extension())
 		{
-			extensions.insert(dir.path().extension());
+			std::string toInsert = dir.path().extension().string();
+			extensions.insert(toInsert.substr(1, toInsert.length() - 1)); //trim the '.' at the beginning
 		}
 	}
 

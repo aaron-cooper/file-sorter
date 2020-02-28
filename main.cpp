@@ -103,7 +103,7 @@ void copyFilesToExtensionDirectories(std::filesystem::path toSearch, std::filesy
 			destDir /= file.path().filename();
 			try {
 				std::filesystem::copy(file, destDir);
-			} catch (std::filesystem::filesystem_error e) {
+			} catch (const std::filesystem::filesystem_error & e) {
 				if (17 == e.code().value())
 				std::cerr << "Could not copy file because a file of the same name is in the destination."
 					<< std::endl

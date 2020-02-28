@@ -126,14 +126,10 @@ void copyFilesToExtensionDirectories(std::filesystem::path toSearch, std::filesy
 int main()
 {
 
-	std::set<std::string> extensions;
+	std::set<std::filesystem::path> extensions;
 
 	extensions = getAllExtensions(std::filesystem::current_path());
-
-	for (std::string s : extensions)
-	{
-		std::cout << s << std::endl;
-	}
-
+	createSetDirectories("testExtFolder", extensions);
+	copyFilesToExtensionDirectories(std::filesystem::current_path(), "testExtFolder");
 	return 0;
 }

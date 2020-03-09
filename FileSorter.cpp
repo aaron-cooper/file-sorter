@@ -62,3 +62,69 @@ void FileSorter::createSetDirectories()
 
 	return;
 }
+
+
+
+/**
+ * Function for copying files to their extension directory.
+ * 
+ * Functions are copied to a directory sharing the name of the file's extension.
+ * 
+ * @param toSearch The path where the files that are to be moved are located
+ * @param extensionParent The path where the extension folders are located.
+ */
+void FileSorter::copyFilesToExtensionDirectories()
+{
+	std::filesystem::path extensionParent = destDir;
+
+	//for each file in toSearch
+	if (extensionParent.is_relative())
+	{
+		std::filesystem::path absParent = std::filesystem::current_path();
+		absParent /= extensionParent;
+		extensionParent = absParent;		
+	}
+
+	//init for loop
+	std::filesystem::recursive_directory_iterator iter(toSearch);
+	std::filesystem::recursive_directory_iterator end = std::filesystem::end(iter);
+	for (; iter != end ;iter++)
+	{
+		std::filesystem::directory_entry file = *iter;
+
+		//if this is the directory where we're putting the files, skip it
+		if (file.path() == extensionParent)
+		{
+			iter.disable_recursion_pending();
+			continue;
+		}
+
+		if (file.is_regular_file())
+		{
+			std::filesystem::path destDir;
+
+			if (file.path().has_extension())
+			{
+				destDir = extensionParent;
+				destDir /= std::filesystem::path(file.path().extension().string().substr(1));
+			}
+			else
+			{
+				destDir = extensionParent;
+				destDir /= "no_extension";
+			}
+			destDir /= file.path().filename();
+			try {
+				std::filesystem::copy(file, destDir);
+			} catch (const std::filesystem::filesystem_error & e) {
+				if (17 == e.code().value())
+				std::cerr << "Could not copy file because a file of the same name is in the destination."
+					<< std::endl
+					<< "\tAttempted to copy: " << e.path1().stem() << std::endl
+					<< "\tfrom " << e.path1().parent_path() << std::endl
+					<< "\tCollided with file from: " << e.path2() << std::endl;
+			}
+		}
+	}
+}
+

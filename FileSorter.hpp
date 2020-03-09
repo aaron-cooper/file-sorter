@@ -3,6 +3,7 @@
 
 #include <filesystem>
 #include <set>
+#include <iostream>
 
 
 class FileSorter {
@@ -15,6 +16,7 @@ private:
 
 	std::set<std::filesystem::path> getAllExtensions();
 	void FileSorter::createSetDirectories();
+	void FileSorter::copyFilesToExtensionDirectories();
 
 	std::set<std::filesystem::path> extensions;
 	std::filesystem::path toSearch;

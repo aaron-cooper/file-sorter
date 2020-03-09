@@ -8,7 +8,7 @@ FileSorter::FileSorter(std::filesystem::path toSearch, std::filesystem::path des
 
 bool FileSorter::isValid()
 {
-	return std::filesystem::exists(destDir) && std::filesystem::exists(toSearch);
+	return std::filesystem::exists(toSearch) && (rmode == FileSorter::COPY || rmode == FileSorter::MOVE);
 }
 
 

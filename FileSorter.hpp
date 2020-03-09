@@ -2,6 +2,7 @@
 #define FILESORTER_H
 
 #include <filesystem>
+#include <set>
 
 
 class FileSorter {
@@ -11,6 +12,10 @@ public:
 	FileSorter(std::filesystem::path toSearch, std::filesystem::path destDir, RelocationMode mode);
 	bool isValid();
 private:
+
+	std::set<std::filesystem::path> getAllExtensions();
+
+	std::set<std::filesystem::path> extensions;
 	std::filesystem::path toSearch;
 	std::filesystem::path destDir;
 	RelocationMode rmode = COPY;

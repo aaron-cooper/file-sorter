@@ -98,7 +98,7 @@ void FileSorter::copyFilesToExtensionDirectories()
 		std::filesystem::directory_entry file = *iter;
 
 		//if this is the directory where we're putting the files, skip it
-		if (file.path() == extensionParent)
+		if (std::filesystem::equivalent(file.path(), extensionParent))
 		{
 			iter.disable_recursion_pending();
 			continue;

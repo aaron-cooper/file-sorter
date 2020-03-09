@@ -69,9 +69,6 @@ void FileSorter::createSetDirectories()
  * Function for copying files to their extension directory.
  * 
  * Functions are copied to a directory sharing the name of the file's extension.
- * 
- * @param toSearch The path where the files that are to be moved are located
- * @param extensionParent The path where the extension folders are located.
  */
 void FileSorter::copyFilesToExtensionDirectories()
 {

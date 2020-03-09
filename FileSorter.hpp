@@ -12,6 +12,7 @@ public:
 
 	FileSorter(std::filesystem::path toSearch, std::filesystem::path destDir, RelocationMode mode);
 	bool isValid();
+	void relocateFiles();
 private:
 
 	std::set<std::filesystem::path> getAllExtensions();

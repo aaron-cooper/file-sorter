@@ -12,6 +12,14 @@ bool FileSorter::isValid()
 }
 
 
+void FileSorter::relocateFiles()
+{
+	extensions = getAllExtensions();
+	createSetDirectories();
+	copyFilesToExtensionDirectories();
+}
+
+
 /**
  * Return set of extensions on files in a directory.
  * 

@@ -112,7 +112,15 @@ void FileSorter::copyFilesToExtensionDirectories()
 			}
 			destDir /= file.path().filename();
 			try {
-				std::filesystem::copy(file, destDir);
+				if (rmode == COPY)
+				{
+					std::filesystem::copy(file, destDir);
+				}
+				else if (rmode == MOVE)
+				{
+					std::filesystem::rename(file, destDir);
+				}
+
 			} catch (const std::filesystem::filesystem_error & e) {
 				if (17 == e.code().value())
 				std::cerr << "Could not copy file because a file of the same name is in the destination."

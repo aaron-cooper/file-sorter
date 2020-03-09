@@ -1,4 +1,19 @@
+CC=g++
+CFLAGS=-g -std=c++17 -Wall
+LIBFLAG=-lstdc++fs
+INCFLAG=-I./
+
+OBJS=FileSorter.o
+INCLUDES=$(subst .o,.hpp,$(OBJS))
+
+fileSorter: $(OBJS)
+	$(CC) $(CFLAGS) $(INCFLAG) $^ main.cpp -o $@ $(LIBFLAG)
+
+%.o: %.cpp $(INCLUDES)
+	$(CC) $(CFLAGS) $(INCFLAG) -c -o $@ $< $(LIBFLAG)
+
+clean:
+	rm *.o fileSorter
 
 
-fileSorter: main.cpp
-	g++ -g -std=c++17 -Wall main.cpp -o fileSorter -lstdc++fs
+.PHONY: clean

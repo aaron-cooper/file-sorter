@@ -6,3 +6,7 @@ FileSorter::FileSorter(std::filesystem::path toSearch, std::filesystem::path des
 	return;
 }
 
+bool FileSorter::isValid()
+{
+	return std::filesystem::exists(destDir) && std::filesystem::exists(toSearch);
+}

@@ -43,3 +43,22 @@ std::set<std::filesystem::path> FileSorter::getAllExtensions()
 
 	return extensions;
 }
+
+
+
+/**
+ * Create a directory for each element of a set of extensions.
+ */
+void FileSorter::createSetDirectories()
+{
+	std::filesystem::path toCreate;
+	for (std::filesystem::path p : extensions)
+	{
+		toCreate = destDir;
+		toCreate /= p;
+		std::filesystem::create_directories(toCreate);
+	}
+
+
+	return;
+}

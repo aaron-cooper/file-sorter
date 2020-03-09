@@ -14,6 +14,7 @@ public:
 private:
 
 	std::set<std::filesystem::path> getAllExtensions();
+	void FileSorter::createSetDirectories();
 
 	std::set<std::filesystem::path> extensions;
 	std::filesystem::path toSearch;
